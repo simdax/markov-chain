@@ -25,25 +25,31 @@ require(['markov','svg'], function(MarkovChain,Draw) {
         ]
     }
 
+    window.d = data;
+
     var svg = new Draw(data);
     svg.draw();
 
-    window.add = _ =>{
-        var x = Math.random() * 300;
-        var y = Math.random() * 100;
-        data.nodes.push({x,y});
-        data.edges.push({source: 1, target: 2, probability: 0.5});
-        svg.setEdges();
-        // svg = new Draw(data);
+    window.update=_=>{
+      svg.setEdges();
+      svg.draw();      
     }
+
 
     new Vue({
       el:'#app',
       data:data,
-      watch:{
-        edges(){
-          svg.draw()
-        }  
+      methods:{
+        addEdge(){
+          data.edges.push({source:0, target:data.nodes.length-1, probability:0.5})
+          window.update();
+        },
+        addNode(){
+          var x = Math.random() * 300;
+          var y = Math.random() * 100;
+          data.nodes.push({x,y});
+          window.update();
+        }        
       }
     })
 

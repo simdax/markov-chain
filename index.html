@@ -15,13 +15,20 @@
     <svg class="chart" width="800" height="600"></svg>
     
     <div id="app">
-        <input v-for='node,k in nodes' 
-        v-model='edges[k].source' type="number">
-        <input v-for='node,k in nodes' 
-        v-model='edges[k].target' type="number">
+
+        <div class="edges">        
+          <input v-for='e in edges' 
+          v-model='e.source' type="number" onchange="update()">
+          <input v-for='e in edges' 
+          v-model='e.target' type="number" onchange="update()">
+        </div>
+        <button @click="addNode">ajouter node</button>
+        <button @click="addEdge">ajouter edge</button>
+        <p>you have {{nodes.length}} nodes</p>
     </div>
   
     <script data-main="main" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.min.js"></script>
+
 
   </body>
 </html>
