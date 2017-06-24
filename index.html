@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Markov chain</title>
+  <head>
 
+    <meta charset="utf-8">
+    <title>Markov chain</title>
 
-        <link rel="stylesheet" type="text/css" href="markov-chain.css">
-        <script data-main="main" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.min.js"></script>
+    <script src="//unpkg.com/vue"></script>
 
-    </head>
-    <body>
-        <h1>Markov chain</h1>
-        <svg class="chart" width="800" height="600"></svg>
+    <link rel="stylesheet" type="text/css" href="style.css">
 
+  </head>
+  <body>
+    <h1>Markov chain</h1>
+    <svg class="chart" width="800" height="600"></svg>
+    
+    <div id="app">
+        <input v-for='node,k in nodes' 
+        v-model='edges[k].source' type="number">
+        <input v-for='node,k in nodes' 
+        v-model='edges[k].target' type="number">
+    </div>
+  
+    <script data-main="main" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.min.js"></script>
 
-    </body>
+  </body>
 </html>
