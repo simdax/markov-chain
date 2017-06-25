@@ -1,0 +1,33 @@
+
+@import url(https://fonts.googleapis.com/css?family=Raleway)
+
+body {
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+}
+
+.char {
+    width: auto;
+    height: auto;
+}
+
+.edge {
+    z-index:-1;
+    stroke: #bdc3c7;
+    stroke-opacity: 0.6;
+    stroke-width: 2px;
+    fill: transparent;
+}
+.edges{
+    display: flex;
+}
+.node {
+    z-index:0;
+    stroke: #2980b9;
+    stroke-width: 2.5px;
+    fill: #2980b9;
+}
+
+.current-node {
+    stroke: #1abc9c;
+}

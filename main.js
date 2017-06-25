@@ -1,4 +1,5 @@
 require.config({
+    urlArgs: "bust=" + (new Date()).getTime(),
     paths:{
        d3: "https://d3js.org/d3.v4.min",
        jquery:"https://code.jquery.com/jquery-3.1.0.min",
@@ -10,8 +11,9 @@ require.config({
     }
 })
 
-require(['markov','svg'], function(MarkovChain,Draw) {
+require(['markov','svg', 'd3'], function(MarkovChain,Draw,d3) {
 
+  window.d3 = d3;
     var data = {
         nodes: [
             {x: 100, y: 100},
@@ -25,30 +27,36 @@ require(['markov','svg'], function(MarkovChain,Draw) {
         ]
     }
 
-    window.d = data;
-
-    var svg = new Draw(data);
-    svg.draw();
-
-    window.update=_=>{
-      svg.setEdges();
-      svg.draw();      
-    }
-
+    
+    data.svg = new Draw(data);
 
     new Vue({
       el:'#app',
       data:data,
+      mounted(){
+        this.update()
+      },
       methods:{
+        update(){
+          this.svg.update()
+        },
         addEdge(){
           data.edges.push({source:0, target:data.nodes.length-1, probability:0.5})
-          window.update();
+          this.svg.update();
         },
         addNode(){
           var x = Math.random() * 300;
           var y = Math.random() * 100;
           data.nodes.push({x,y});
-          window.update();
+          this.svg.update();
+        },
+        removeNode(n){
+          data.nodes.splice(-1,1)
+          this.svg.update();
+        },
+        removeEdge(n){
+          data.edges.splice(-1,1);
+          this.svg.update();
         }        
       }
     })
@@ -57,4 +65,6 @@ require(['markov','svg'], function(MarkovChain,Draw) {
         [[0.5, 0.5],
          [0.9, 0.1]]
     );
+
+
 });

@@ -18,17 +18,18 @@
 
         <div class="edges">        
           <input v-for='e in edges' 
-          v-model='e.source' type="number" onchange="update()">
+          v-model='e.source' type="number" @change="update">
           <input v-for='e in edges' 
-          v-model='e.target' type="number" onchange="update()">
+          v-model='e.target' type="number" @change="update">
         </div>
         <button @click="addNode">ajouter node</button>
         <button @click="addEdge">ajouter edge</button>
+        <button @click="removeEdge">enlever edge</button>
+        <button @click="removeNode">enlever node</button>
         <p>you have {{nodes.length}} nodes</p>
     </div>
   
     <script data-main="main" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.min.js"></script>
-
 
   </body>
 </html>
