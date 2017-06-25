@@ -11,26 +11,39 @@ require.config({
     }
 })
 
-require(['markov','svg', 'd3'], function(MarkovChain,Draw,d3) {
+require(['markov','svg'], function(MarkovChain,Draw) {
 
-  window.d3 = d3;
     var data = {
         nodes: [
-            {x: 100, y: 100},
-            {x: 200, y: 100},
+            // {x: 100, y: 100},
+            // {x: 200, y: 100},
         ],
         edges: [
-            {source: 0, target: 1, probability: 0.5},
-            {source: 1, target: 0, probability: 0.9},
-            {source: 1, target: 1, probability: 0.1},
-            {source: 0, target: 0, probability: 0.5},
+          // {source: 0, target: 0, probability: 0.5},
+          // {source: 0, target: 0, probability: 0.5},
+          // {source: 1, target: 0, probability: 0.9},
+          // {source: 1, target: 1, probability: 0.1},
         ]
     }
 
-    
     data.svg = new Draw(data);
 
     new Vue({
+      data: data,
+      el:'#tab',
+      methods:{
+        fil(source,target){
+          return this.edges.filter(v=>{
+            return v.source == source && v.target == target ;
+          }).map(v=>{
+            return v.probability
+          }) 
+        }
+      },
+    });
+
+    new Vue({
+      components:'tab',
       el:'#app',
       data:data,
       mounted(){
@@ -47,7 +60,12 @@ require(['markov','svg', 'd3'], function(MarkovChain,Draw,d3) {
         addNode(){
           var x = Math.random() * 300;
           var y = Math.random() * 100;
+          var id = data.nodes.length;
           data.nodes.push({x,y});
+          for (var i = 0; i < data.nodes.length; i++) {
+            data.edges.push({source:id,target:i,probability:0.5})
+          };
+          console.log(data);
           this.svg.update();
         },
         removeNode(n){
