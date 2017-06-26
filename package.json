@@ -4,7 +4,7 @@
   "description": "vue for markov chain manipulation",
   "git": "//github.com/simdax/markov-chain",
   "keywords": ["markov","markov-chain"],
-  "dependencies": {
+  "dependencies-dev": {
     "css-loader": "^0.28.4",
     "d3": "^4.9.1",
     "jquery": "^3.2.1",
