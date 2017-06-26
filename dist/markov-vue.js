@@ -17296,7 +17296,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-// vuex needeed ???
+
+
+// TODO vuex needed 
 
 
     new __WEBPACK_IMPORTED_MODULE_0_vue_dist_vue_esm__["a" /* default */]({
@@ -17311,14 +17313,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     })
 
+    __WEBPACK_IMPORTED_MODULE_0_vue_dist_vue_esm__["a" /* default */].component('markov', __WEBPACK_IMPORTED_MODULE_1_vue_loader_components_main_vue___default.a)
+
     new __WEBPACK_IMPORTED_MODULE_0_vue_dist_vue_esm__["a" /* default */]({
-      template:`
-        <div class="app">
-          <markov></markov>
-        </div>
-      `,
-      el:"#app",
-      components:{markov: __WEBPACK_IMPORTED_MODULE_1_vue_loader_components_main_vue___default.a},
+        el:"#vue"
     })
 
 
@@ -34637,6 +34635,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  
  
 
+ // Vue.component('markov',{
+   
+ // })
  /* harmony default export */ __webpack_exports__["default"] = ({
    name: 'markov',
    components:{nodes: __WEBPACK_IMPORTED_MODULE_2_vue_loader_nodes_vue___default.a,edges: __WEBPACK_IMPORTED_MODULE_1_vue_loader_edges_vue___default.a},

@@ -17,6 +17,9 @@
   
   import data from './store'
 
+  // Vue.component('markov',{
+    
+  // })
   export default{
     name: 'markov',
     components:{nodes,edges},
