@@ -21,39 +21,97 @@ require(['markov','svg'], function(MarkovChain,Draw) {
     data.svg = new Draw(data);
 
     new Vue({
-      data: data,
-      el:'#tab',
-      methods:{
-        fil(source,target){
-          return this.edges.filter(v=>{
-            return v.source == source && v.target == target ;
-          }).map(v=>{
-            return v.probability
-          }) 
+      data,
+      watch:{
+        edges(){
+          data.svg.update()
+        },
+        nodes(){
+          data.svg.update()
         }
+      }
+    })
+
+    new Vue({
+      data,
+      el:'#tab',
+      template:`        
+          <table>
+            <thead>
+              <th>Edges</th>
+              <td v-for="n,k in nodes">{{k}}</td>
+            </thead>  
+            <tbody>
+            <tr v-for='node,k in nodes'>
+              <td>{{k}}</td>
+              <td v-for="n,kk in nodes">
+                <input type="number"
+                min=0 max=1 step=0.1 
+                v-model.number=edges[index(kk,k)].probability 
+                @change="update"/>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+      `,
+      methods:{
+        update(){
+          console.log(data.svg);
+          data.svg.update()
+        },
+        index(x,y){
+          var res;
+          var depart = y*y;
+          if (x <= y) {
+            res= depart + x;
+          }else{
+            res = x*x + x + (y+1);
+          }
+          return res;
+        },
+        // changeProb(source,target){
+        //   var index=-1;
+        //   for (var i = 0; i < data.edges.length; i++) {
+        //     var v = data.edges[i];
+        //     if (v.source == source && v.target == target) {
+        //       index = i ;
+        //       break;
+        //     }
+        //   }
+        //   if (index > -1) {
+        //     // console.log("updat !");
+        //     data.edges[index].opacity = 1
+        //     // svg.update();
+        //   }
+        // }
       },
     });
 
-    new Vue({
+    svg = new Vue({
       components:'tab',
       el:'#app',
       data:data,
-      mounted(){
-        this.update()
-      },
+      // mounted(){
+      //   this.update()
+      // },
       methods:{
-        update(){
-          this.svg.update()
-        },
+        // update(){
+        //   this.svg.update()
+        // },
         addNode(){
           var x = Math.random() * 300;
           var y = Math.random() * 100;
           var id = data.nodes.length;
           data.nodes.push({x,y});
-          for (var i = 0; i < data.nodes.length; i++) {
-            data.edges.push({source:id,target:i,probability:0.5})
+          // populate new node edges
+          for (var i = 0; i <= id; i++) {
+            data.edges.push({source:id,target:i,probability:Math.random()})
           };
-          this.svg.update();
+          // populate old nodes edges
+          for (var i = 0; i < id; i++) {
+            data.edges.push({source:i,target:id,probability:Math.random()})
+          }
+          // this.svg.update();
         },
         removeNode(n){
           // last index
@@ -68,7 +126,7 @@ require(['markov','svg'], function(MarkovChain,Draw) {
           };
           // remove node
           data.nodes.splice(n,1);
-          this.svg.update();
+          // this.svg.update();
         }        
       }
     })

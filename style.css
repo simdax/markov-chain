@@ -1,31 +1,48 @@
 
-/*@import url(https://fonts.googleapis.com/css?family=Raleway)*/
+/*@import url("//fonts.googleapis.com/css?family=Raleway")*/
 
 .app{
     font-family: 'Raleway', sans-serif;
     text-align: center;
     border: 1px solid black;
+    display: flex;
+    flex-flow: row wrap;
 }
 
-.char {
-    width: auto;
-    height: auto;
+svg{
+    flex: 2 1 1;
+}
+/*// events manager*/
+
+svg text{
+    pointer-events: none;
+}
+svg path{
+    pointer-events: none;
 }
 
-.edge {
-    z-index:1;
-    stroke: #bdc3c7;
-    stroke-opacity: 0.6;
-    stroke-width: 2px;
-    fill: transparent;
+#settings{
+    display: flex;
+    flex-flow: column;
 }
 .edges{
     display: flex;
     flex-wrap: wrap;
     width: 30vw;
 }
+.char {
+    width: auto;
+    height: auto;
+}
+
+.edge {
+    /*z-index:1;*/
+    stroke: black;
+    stroke-width: 2px;
+    fill: transparent;
+}
 .node {
-    z-index:0;
+    /*z-index:0;*/
     stroke: #2980b9;
     stroke-width: 2.5px;
     fill: #2980b9;

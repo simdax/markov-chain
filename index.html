@@ -12,46 +12,20 @@
   </head>
   <body>
 
-  <div class="app">
-    
+    <h1>Markov Vador</h1>
 
-    <h1>Markov chain</h1>
-    <svg class="chart" width="800" height="600">  
-    </svg>
-    
-        <div id="tab">
-            
-          <table>
-            <thead>
-              <th>Edges</th>
-              <td v-for="n,k in nodes">{{k}}</td>
-            </thead>  
-            <tbody>
-            <tr v-for='node,k in nodes'>
-              <td>{{k}}</td>
-              <td v-for="n,kk in nodes">
-                {{ fil(k,kk) }}
-              </td>
-            </tr>
-            </tbody>
-          </table>
-
+    <div class="app">    
+      <svg class="chart"></svg>
+      <div id="setting">    
+        <div id="tab"></div>
+        <div id="app">
+            <button @click="addNode">ajouter node</button>
+            <button @click="removeNode">enlever node</button>
         </div>
-
-    <div id="app">
-        <div class="edges">        
-          <input v-for='e in edges' 
-          v-model='e.source' type="number" @change="update">
-          <input v-for='e in edges' 
-          v-model='e.target' type="number" @change="update">
-        </div>
-        <button @click="addNode">ajouter node</button>
-        <button @click="removeNode">enlever node</button>
-        <p>you have {{nodes.length}} nodes</p>
+      </div>  
     </div>
-  
+
     <script data-main="main" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.min.js"></script>
-  </div>
 
   </body>
 </html>
