@@ -14,16 +14,8 @@ require.config({
 require(['markov','svg'], function(MarkovChain,Draw) {
 
     var data = {
-        nodes: [
-            // {x: 100, y: 100},
-            // {x: 200, y: 100},
-        ],
-        edges: [
-          // {source: 0, target: 0, probability: 0.5},
-          // {source: 0, target: 0, probability: 0.5},
-          // {source: 1, target: 0, probability: 0.9},
-          // {source: 1, target: 1, probability: 0.1},
-        ]
+        nodes: [],
+        edges: []
     }
 
     data.svg = new Draw(data);
@@ -53,10 +45,6 @@ require(['markov','svg'], function(MarkovChain,Draw) {
         update(){
           this.svg.update()
         },
-        addEdge(){
-          data.edges.push({source:0, target:data.nodes.length-1, probability:0.5})
-          this.svg.update();
-        },
         addNode(){
           var x = Math.random() * 300;
           var y = Math.random() * 100;
@@ -65,15 +53,21 @@ require(['markov','svg'], function(MarkovChain,Draw) {
           for (var i = 0; i < data.nodes.length; i++) {
             data.edges.push({source:id,target:i,probability:0.5})
           };
-          console.log(data);
           this.svg.update();
         },
         removeNode(n){
-          data.nodes.splice(-1,1)
-          this.svg.update();
-        },
-        removeEdge(n){
-          data.edges.splice(-1,1);
+          // last index
+          n = data.nodes.length -1;
+          // remove corresponding edges
+          var edges = data.edges.filter(edge=>{
+            return edge.source == n || edge.target == n
+          });
+          for (var i = 0; i < edges.length; i++) {
+            var index = edges[i];
+            data.edges.splice(data.edges.indexOf(index),1)
+          };
+          // remove node
+          data.nodes.splice(n,1);
           this.svg.update();
         }        
       }

@@ -12,22 +12,18 @@
   </head>
   <body>
 
+  <div class="app">
+    
+
     <h1>Markov chain</h1>
-    <svg class="chart" width="800" height="600">
-<!--       <defs>
-        <marker id="arrow" markerWidth="100" markerHeight="100" refX="0" refY="3" orient="auto"  viewBox="0 0 10 20">
-          <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
-        </marker>
-      </defs>
-          <path d="M84.75001274884077 182.80526572587635 C 134.7500127488408 232.80526572587635, 34.750012748840774 232.80526572587635, 84.75001274884077 182.80526572587635" stroke="#000" fill="none" stroke-width="10"  marker-end="url(#arrow)" />
- -->
+    <svg class="chart" width="800" height="600">  
     </svg>
     
         <div id="tab">
             
           <table>
             <thead>
-              <th>rien</th>
+              <th>Edges</th>
               <td v-for="n,k in nodes">{{k}}</td>
             </thead>  
             <tbody>
@@ -51,12 +47,11 @@
         </div>
         <button @click="addNode">ajouter node</button>
         <button @click="removeNode">enlever node</button>
-        <button @click="addEdge">ajouter edge</button>
-        <button @click="removeEdge">enlever edge</button>
         <p>you have {{nodes.length}} nodes</p>
     </div>
   
     <script data-main="main" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.min.js"></script>
+  </div>
 
   </body>
 </html>
