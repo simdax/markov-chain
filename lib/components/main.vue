@@ -1,32 +1,21 @@
 <template>
   <div> 
-    <svg class="chart"></svg>
-    <div id="setting">
-      <edges></edges>
-      <nodes></nodes>      
-    </div>  
+  <graph ref="svg"></graph> 
+  <settings></settings>
   </div> 
 </template>
 
 <script>
 
-  import Vue from 'vue'
-  import edges from 'vue-loader!./edges.vue'
-  import nodes from 'vue-loader!./nodes.vue'
-  import Draw from "../markovSvg"
-  
+  import settings from './settings.vue'
+  import graph from "./svg.vue"
   import data from './store'
 
-  // Vue.component('markov',{
-    
-  // })
   export default{
+    store: data,
     name: 'markov',
-    components:{nodes,edges},
-    mounted(){
-     data.svg = new Draw(data);
-   }
- }
+    components:{settings,graph},
+  }
 
 </script>
 

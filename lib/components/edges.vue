@@ -11,7 +11,7 @@
             <input type="number"
             min=0 max=1 step=0.1 
             v-model.number=edges[index(kk,k)].probability 
-            @change="update"/>
+            />
           </td>
         </tr>
       </tbody>
@@ -20,17 +20,12 @@
 
   <script>
 
-    import data from './store'
-
+  import {mapGetters, mapActions} from 'vuex'
+  // var methods = mapActions()
+  
     export default {
-      data(){return data},
+      computed: mapGetters(['edges', 'nodes']),
       methods:{
-          // got to update manually
-          // because we have to watch only
-          // one property of edges (probability)
-          update(){
-            data.svg.update()
-          },
           index(x,y){
         	// this algo reflects the "node update" pattern
         	/*
