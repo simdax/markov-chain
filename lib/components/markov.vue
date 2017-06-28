@@ -1,5 +1,5 @@
 <template>
-  <div> 
+  <div id="markov"> 
     <graph :ns="ns" ref="graph"></graph> 
     <div>
       <edges :ns="ns" @opacity="update"></edges>
@@ -7,7 +7,13 @@
     </div>  
   </div> 
 </template>
-
+<style scoped>
+  #markov{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+  }
+</style>
 <script>
 
   import edges from './edges.vue'

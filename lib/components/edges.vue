@@ -24,12 +24,13 @@
 
 <style scoped> 
 #wrapper{
-    width: 50vw;
+/*    width: 50vw;
     height: 30vh;
-  }  
+*/  }  
   table{
-    width: 100%;
-    height: 100%;
+    flex: 1 1 500px;
+/*    width: 100%;
+    height: 100%;*/
     table-layout: fixed;
   }
   td, input{

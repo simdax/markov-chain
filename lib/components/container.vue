@@ -51,12 +51,12 @@
 		flex-flow: column nowrap;
 		align-items: center;
 	}
-	.markovContainerImg{
+	.markovContainerImgs{
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: center;
 		align-items: center;
-		height: 50vh;
+		height: 100%;
 	}
 	.arrows{
 		display: flex;
@@ -65,16 +65,16 @@
 		margin-right: 2px;
 		width: 0;
 		height: 0;
-		border-top: 50px solid transparent;
-		border-right: 100px solid red;
-		border-bottom: 50px solid transparent;
+		border-top: 2vh solid transparent;
+		border-right: 4vh solid red;
+		border-bottom: 2vh solid transparent;
 	}
 	.arrows .right{
 		margin-left: 2px;
 		width: 0;
 		height: 0;
-		border-top: 50px solid transparent;
-		border-left: 100px solid red;
-		border-bottom: 50px solid transparent;
+		border-top: 2vh solid transparent;
+		border-left: 4vh solid red;
+		border-bottom: 2vh solid transparent;
 	}
 </style>
