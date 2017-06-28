@@ -34,16 +34,6 @@ import {mapGetters} from 'vuex';
     	)
       this.svg= d3.select(this.$el);
     	this.svg.append('svg:defs');
-    	this.$store.subscribe((mutation,state)=>{
-    		switch (mutation.type){
-    			case 'ADD_NODE':
-    				console.log("added node");
-    				break;
-    			default:
-    				console.log("def");
-    				break;
-    		}
-    	})
     },
     methods:{
 	    setMarker(){
