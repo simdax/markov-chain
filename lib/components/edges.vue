@@ -10,7 +10,6 @@
           <td v-for="n,kk in nodes">
             <input type="number"
             min=0 max=1 step=0.1 
-            v-model.number=edges[index(kk,k)].probability 
             @input="update($event,index(kk,k))"
             />
           </td>
@@ -25,12 +24,23 @@
   // var methods = mapActions()
   
     export default {
-      computed: mapGetters(['edges', 'nodes']),
+      props:['ns'],
+      computed:{
+        nodes(){return this.$store.state[this.ns].nodes},
+        edges:{
+          get(){
+            return this.$store.state[this.ns].edges
+          },
+          set(val){
+            // nothing (strict mode) => see update event
+          }
+        }
+      },
       methods:{
           update(ev,index){
             var value = ev.target.value;
             this.$emit('opacity');
-            this.$store.dispatch('proba',{index,value});
+            this.$store.state[this.ns].dispatch('proba',{index,value});
           },
           index(x,y){
         	// this algo reflects the "node update" pattern
@@ -47,13 +57,11 @@
                 j : jump to beginning of second next row
               }
              */
-            var res;
             if (x <= y) {
-              res= y*y + x;
+              return y*y + x;
             }else{
-              res = x*x + x + (y+1);
+              return x*x + x + (y+1);
             }
-            return res;
           },
         },
       }

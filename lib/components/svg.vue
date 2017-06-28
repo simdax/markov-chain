@@ -8,7 +8,16 @@ import * as d3 from "d3";
 import {mapGetters} from 'vuex';
 
 	export default {
-		computed:mapGetters(['nodes','edges']),
+		props:['ns'],
+		computed:{
+			nodes(){
+				return this.$store.state[this.ns].nodes
+			},
+			edges(){
+				return this.$store.state[this.ns].edges
+			}
+			// mapGetters(this.ns ?,['nodes','edges']),
+		},
 		data(){
 			return { 
 			marker:[{
@@ -107,7 +116,7 @@ import {mapGetters} from 'vuex';
         .on('drag', function(d,i){
         	var x = d3.event.x;
 	        var y = d3.event.y;
-					this.$store.commit({type:'MOVE_NODE',index:i,pos:{x,y}})
+					this.$store.commit(this.ns+'/MOVE_NODE',{index:i,pos:{x,y}})
 					this.update()
           }.bind(this)
         )

@@ -1,9 +1,9 @@
 <template>
   <div> 
-    <graph ref="graph"></graph> 
-    <div id="settings">
-      <edges @opacity="update"></edges>
-      <nodes></nodes>      
+    <graph :ns="id" ref="graph"></graph> 
+    <div>
+      <edges :ns="id" @opacity="update"></edges>
+      <nodes :ns="id"></nodes>      
     </div>  
   </div> 
 </template>
@@ -15,6 +15,7 @@
   import graph from "./components/svg.vue"
 
   export default{
+    props:['id'],
     name: 'markov',
     components:{edges,nodes,graph},
     methods:{
