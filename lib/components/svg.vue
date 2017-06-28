@@ -1,6 +1,12 @@
 <template>
-	<svg class="chart"></svg>
+	<svg class="chart" ></svg>
 </template>
+
+<style>
+	svg{
+		background-color: grey;
+	}
+</style>
 
 <script>
 

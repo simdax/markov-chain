@@ -1,7 +1,9 @@
    <template>
+   <div id="wrapper">
+     
     <table>
       <thead>
-        <th>Edges</th>
+        <th>%</th>
         <td v-for="n,k in nodes">{{k}}</td>
       </thead>  
       <tbody>
@@ -17,7 +19,26 @@
         </tr>
       </tbody>
     </table>
+   </div>
   </template> 
+
+<style scoped> 
+#wrapper{
+    width: 50vw;
+    height: 30vh;
+  }  
+  table{
+    width: 100%;
+    height: 100%;
+    table-layout: fixed;
+  }
+  td, input{
+    text-align: center;
+  }
+  th, td:first-child{
+    width:13px;
+  }
+</style>
 
   <script>
 
