@@ -11,6 +11,7 @@
             <input type="number"
             min=0 max=1 step=0.1 
             v-model.number=edges[index(kk,k)].probability 
+            @input="$root.$emit('opacity')"
             />
           </td>
         </tr>
@@ -26,6 +27,9 @@
     export default {
       computed: mapGetters(['edges', 'nodes']),
       methods:{
+          setProb(){
+            this.$store.commit('SET_OPACITY')
+          },
           index(x,y){
         	// this algo reflects the "node update" pattern
         	/*

@@ -27,8 +27,23 @@ import {mapGetters} from 'vuex';
   	  }
 	  },
     mounted(){
+    	this.$root.$on('opacity',
+    		function(){
+    			this.update()
+    		}.bind(this)
+    	)
       this.svg= d3.select(this.$el);
     	this.svg.append('svg:defs');
+    	this.$store.subscribe((mutation,state)=>{
+    		switch (mutation.type){
+    			case 'ADD_NODE':
+    				console.log("added node");
+    				break;
+    			default:
+    				console.log("def");
+    				break;
+    		}
+    	})
     },
     methods:{
 	    setMarker(){
@@ -48,16 +63,13 @@ import {mapGetters} from 'vuex';
 	          .attr('d', function(d){ return d.path.d })
 	          .attr('fill', function(d) { return d.path.fill});
 	    },
-		  drawEdges1(){
+		  drawEdges(){
 		    // update pattern
 		    var paths = this.svg.selectAll('path:not(#defs)')
 		    .data(this.edges);
 		    paths.exit().remove();
 		    paths.enter().append('path')
 		       .attr('class', 'edge');
-   		 },
-
-    drawEdges2(){
       this.svg.selectAll('.edge')
       .attr('d', (d)=> {
 	        // Initial and final coordinates
@@ -116,8 +128,8 @@ import {mapGetters} from 'vuex';
       update(){
         this.setMarker();
         this.drawNodes();
-        this.drawEdges1();
-        this.drawEdges2();
+        this.drawEdges();
+        // this.drawEdges2();
         // this.drawText(nodes);
       },
       drawQuadraticCurve(x1, y1, x2, y2) {
@@ -147,6 +159,7 @@ import {mapGetters} from 'vuex';
       }
 	},
 	watch:{
+		// 'nodes.probability':function(){this.update()},
 		nodes(){this.update()},
 		edges(){this.update()}
 	}
