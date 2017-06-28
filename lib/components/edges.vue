@@ -10,6 +10,7 @@
           <td v-for="n,kk in nodes">
             <input type="number"
             min=0 max=1 step=0.1 
+            v-model="edges[index(kk,k)].probability"
             @input="update($event,index(kk,k))"
             />
           </td>
@@ -40,7 +41,7 @@
           update(ev,index){
             var value = ev.target.value;
             this.$emit('opacity');
-            this.$store.state[this.ns].dispatch('proba',{index,value});
+            this.$store.dispatch(this.ns+'/proba',{index,value});
           },
           index(x,y){
         	// this algo reflects the "node update" pattern
