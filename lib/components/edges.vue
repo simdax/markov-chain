@@ -63,7 +63,7 @@
           update(ev,index){
             var value = ev.target.value;
             this.$emit('opacity');
-            this.$store.dispatch(this.ns+'/proba',{index,value});
+            this.$store.dispatch(this.ns+'/proba',{index,value},{root:true});
           },
           index(x,y){
         	// this algo reflects the "node update" pattern

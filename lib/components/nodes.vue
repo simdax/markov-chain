@@ -20,7 +20,7 @@
 			}
 		},
 		created(){	
-			var actions = mapActions(''+this.ns,{addNode:'add',removeNode:'remove'})
+			var actions = mapActions(''+this.ns,{addNode:'add',removeNode:'remove'},{root:true})
 			for (var k in actions) {
 				this[k] = actions[k].bind(this)
 			}
